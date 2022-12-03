@@ -2,12 +2,14 @@ package Motorcycle;
 
 import Vehicle.Vehicle;
 
-public class Motorcycle extends Vehicle {
+public abstract class Motorcycle extends Vehicle {
     public int num = 0;
+
+    public abstract int sale();
 
     @Override
     public int drive(int km) {
-        if ((this._original_price / 4) * 3 < this._price)
+        if ((this._original_price / 3) * 4 < this._price)
             this._price -= km * 20;
 
         this._kilometrage += km;
@@ -29,8 +31,6 @@ public class Motorcycle extends Vehicle {
         this._price = _price;
         this._original_price = _price;
         this._serialNum = num;
-        this._kilometrage = 0;
-        this._sign = "Motorcycle";
 
         num++;
     }

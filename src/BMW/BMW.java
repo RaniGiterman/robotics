@@ -11,6 +11,7 @@ public class BMW extends Car {
         super(_price);
     }
 
+    @Override
     public int sale() {
         if (canSale) {
             this._price -= this._price / 10;

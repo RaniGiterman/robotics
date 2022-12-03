@@ -8,6 +8,7 @@ public class Harley extends Motorcycle {
         super(_price);
     }
 
+    @Override
     public int sale() {
         if (this._price - 10 > this._original_price / 2)
             this._price -= 10;

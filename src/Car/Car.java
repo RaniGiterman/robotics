@@ -2,9 +2,11 @@ package Car;
 
 import Vehicle.Vehicle;
 
-public class Car extends Vehicle {
+public abstract class Car extends Vehicle {
     public boolean coolCar = true;
     public int num = 0;
+
+    public abstract int sale();
 
     @Override
     public int drive(int km) {
@@ -36,7 +38,6 @@ public class Car extends Vehicle {
         this._original_price = _price;
         this._serialNum = num;
         this._kilometrage = 0;
-        this._sign = "Car";
 
         num++;
     }

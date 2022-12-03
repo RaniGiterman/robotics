@@ -7,6 +7,7 @@ public class Honda extends Motorcycle {
         super(_price);
     }
 
+    @Override
     public int sale() {
         return this._price;
     }

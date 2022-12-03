@@ -1,36 +1,48 @@
 package ItziksGarage;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Motorcycle.Motorcycle;
 import Vehicle.Vehicle;
 
 public class ItziksGarage {
-    public Vehicle[] _vehicles;
-    public int _vehicles_length = 0;
-    public int _motorcycle_quantity = 0;
+    private int _vehiclesLength = 50;
+    private int _vehiclesIndex = 0;
+    public Vehicle[] _vehicles = new Vehicle[_vehiclesLength];
+    // public List<Vehicle> _vehicles = new ArrayList<Vehicle>(_vehiclesLength);
 
     public Vehicle[] addVehicle(Vehicle vehicle) {
-        Vehicle[] new_arr = new Vehicle[_vehicles_length + 1];
-        if (_vehicles_length == 0) {
-            new_arr[_vehicles_length] = vehicle;
-            _vehicles = new_arr;
-        } else {
-            for (int i = 0; i < _vehicles_length; i++) {
+        if (_vehiclesIndex >= _vehiclesLength) {
+            // if the array exeeded size - add 50% more of current size
+            double halfMore = _vehiclesLength / 2.0;
+            halfMore = Math.ceil(halfMore);
+            Vehicle[] new_arr = new Vehicle[_vehiclesLength + (int) halfMore];
+            // copy all elements to new arr
+            for (int i = 0; i < _vehiclesLength; i++) {
                 new_arr[i] = _vehicles[i];
             }
 
-            new_arr[_vehicles_length] = vehicle;
+            new_arr[_vehiclesLength] = vehicle;
+            _vehiclesLength = _vehiclesLength + (int) halfMore;
             _vehicles = new_arr;
+        } else {
+            _vehicles[_vehiclesIndex] = vehicle;
         }
 
-        if (vehicle._sign == "Motorcycle") {
-            _motorcycle_quantity++;
-        }
-
-        _vehicles_length++;
+        _vehiclesIndex++;
         return _vehicles;
     }
 
     public int getMotorcycleQuantity() {
-        return _motorcycle_quantity;
+        int count = 0;
+        for (int i = 0; i < _vehiclesLength; i++) {
+            if (_vehicles[i] instanceof Motorcycle) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     public ItziksGarage() {
